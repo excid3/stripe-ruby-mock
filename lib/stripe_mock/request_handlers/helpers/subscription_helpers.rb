@@ -26,6 +26,8 @@ module StripeMock
       end
 
       def add_subscription_to_customer(cus, sub)
+        id = new_id('ch')
+        charges[id] = Data.mock_charge(:id => id, :customer => cus[:id], :amount => sub[:plan][:amount])
         cus[:subscriptions][:count] = (cus[:subscriptions][:count] || 0) + 1
         cus[:subscriptions][:data] << sub
       end
